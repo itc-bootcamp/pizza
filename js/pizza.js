@@ -55,8 +55,8 @@ Pizza.new = function(){
 Pizza.clear = function(){
     var pizza = document.getElementById("pizza");
     var allToppings = pizza.getElementsByTagName('img');
-    for (var i = allToppings.length - 1; i >= 0; i--) {
-        pizza.removeChild(allToppings[i]);
+    while (allToppings.length > 0){
+        pizza.removeChild(allToppings[0]);
     }
 };
 
