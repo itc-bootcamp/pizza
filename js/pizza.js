@@ -31,8 +31,8 @@ Pizza.placeToppings = function(e){
         var toppingsImg = document.createElement("img"); 
         toppingsImg.src = "./images/" + Pizza.selectedTopping + "_topping.png";
         pizza.appendChild(toppingsImg);
-        toppingsImg.style.top = e.pageY - this.offsetTop + "px";
-        toppingsImg.style.left = e.pageX - this.offsetLeft + "px";
+        toppingsImg.style.top = e.pageY - e.target.offsetTop + "px";
+        toppingsImg.style.left = e.pageX - e.target.offsetLeft + "px";
     }else{
         alert("please select toppings!")
     }
