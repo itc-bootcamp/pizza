@@ -1,6 +1,6 @@
 var Pizza =  {};
 Pizza.toppings = ["tomatoes", "olives", "mushrooms", "pineapple"];
-Pizza.selectedTopping = undefined;
+Pizza.selectedTopping;
 
 Pizza.start = function(){
     Pizza.bindMenuActions();
@@ -27,7 +27,7 @@ Pizza.bindPizzaClick = function(){
 
 Pizza.placeToppings = function(e){
     var pizza = document.getElementById("pizza");
-    if (Pizza.selectedTopping != ""){
+    if (Pizza.selectedTopping != undefined){
         var toppingsImg = document.createElement("img"); 
         toppingsImg.src = "./images/" + Pizza.selectedTopping + "_topping.png";
         pizza.appendChild(toppingsImg);
