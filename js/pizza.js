@@ -1,6 +1,6 @@
 var Pizza =  {};
 Pizza.toppings = ["tomatoes", "olives", "mushrooms", "pineapple"];
-Pizza.selectedTopping = "";
+Pizza.selectedTopping = undefined;
 
 Pizza.start = function(){
     Pizza.bindMenuActions();
@@ -118,12 +118,11 @@ Pizza.generateDynamicToppings = function(){
         newButton.appendChild(buttonLabel);
         toppingsHolder.appendChild(buttonItem);
         newButton.addEventListener("click",function(e){
+            if (Pizza.selectedTopping !== undefined){
+                document.getElementById(Pizza.selectedTopping).classList.remove("selected");
+            }
             var clickedTopping = this;
             Pizza.selectedTopping = clickedTopping.id;
-            allToppingsButtons = document.getElementsByClassName("toppings-btn")
-            for( var j = 0; j < allToppingsButtons.length; j++ ){
-                allToppingsButtons[j].classList.remove("selected");
-            }
             clickedTopping.classList.add("selected");
         });
     }
