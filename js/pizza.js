@@ -28,15 +28,23 @@ Pizza.bindPizzaClick = function(){
 Pizza.placeToppings = function(e){
     var pizza = document.getElementById("pizza");
     if (Pizza.selectedTopping != undefined){
-        var toppingsImg = document.createElement("img"); 
-        toppingsImg.src = "./images/" + Pizza.selectedTopping + "_topping.png";
-        pizza.appendChild(toppingsImg);
-        toppingsImg.style.top = e.pageY - e.target.offsetTop + "px";
-        toppingsImg.style.left = e.pageX - e.target.offsetLeft + "px";
+        var top = e.pageY - e.target.offsetTop + "px";
+        var left = e.pageX - e.target.offsetLeft + "px";
+        Pizza.placeTopping(
+            "./images/" + Pizza.selectedTopping + "_topping.png", top, left);
     }else{
         alert("please select toppings!")
     }
 };
+
+Pizza.placeTopping = function(src, top, left){
+    var pizza = document.getElementById("pizza");
+    var toppingsImg = document.createElement("img"); 
+    toppingsImg.src = src;
+    toppingsImg.style.top = top;
+    toppingsImg.style.left = left;
+    pizza.appendChild(toppingsImg);
+}
 
 
 Pizza.showModal = function(title, message){
@@ -89,11 +97,9 @@ Pizza.load = function(){
     var allToppings = pizzaObj["toppings"];
     for (var i = 0; i < allToppings.length ; i++) {
         var currentTopping = allToppings[i];
-        var toppingsImg = document.createElement("img"); 
-        toppingsImg.src = currentTopping["img"];
-        pizza.appendChild(toppingsImg);
-        toppingsImg.style.top =  currentTopping["top"] + "px";
-        toppingsImg.style.left = currentTopping["left"] + "px";
+        Pizza.placeTopping(currentTopping["img"], 
+                            currentTopping["top"] + "px", 
+                            currentTopping["left"] + "px");
     }
     Pizza.show();
     alert("Pizza Loaded");
